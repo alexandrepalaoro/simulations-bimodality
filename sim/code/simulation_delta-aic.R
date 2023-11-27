@@ -1,6 +1,6 @@
 library(parallel); library(doParallel); library(tidyverse)
 
-# This next line will run the entire code, so it might take a few 
+# This next line will run a previous code entirely, so it might take a few 
 # minutes depending on your computer.
 source("./sim/code/Simulating sigmoid allometries and detecting dimorphism.R")
 
@@ -42,9 +42,7 @@ aic.sim.manau = function(x) {
     sim.male.body[i] = sort(rnorm(n = length(males2$body),
                                   mean = mean(males2$body),
                                   sd = sd(males2$body)))
-  }
-  
-  for(i in 1:1000) {
+    
     sim.male.weap[i] = predict(logis.manauara, list(body=sim.male.body[,i]))
   }
   
@@ -53,9 +51,7 @@ aic.sim.manau = function(x) {
   for(i in 1:1000) {
     sims2[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=2, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,1] = sims2[[i]]$aic + ((2*(7^2) + 2*7) / (125 - 7 - 1))
-    }
-  
-  for(i in 1:1000) {
+    
     sims1[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=1, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,2] = sims1[[i]]$aic + ((2*(3^2) + 2*3) / (125 - 3 - 1))
   }
@@ -169,9 +165,7 @@ aic.sim.pur = function(x) {
     sim.male.body[i] = sort(rnorm(n = length(pur$pro.width),
                                   mean = mean(pur$pro.width),
                                   sd = sd(pur$pro.width)))
-  }
-  
-  for(i in 1:1000) {
+
     sim.male.weap[i] = predict(logis.pur, list(pro.width=sim.male.body[,i]))
   }
   
@@ -180,9 +174,7 @@ aic.sim.pur = function(x) {
   for(i in 1:1000) {
     sims2[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=2, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,1] = sims2[[i]]$aic + ((2*(7^2) + 2*7) / (189 - 7 - 1))
-  }
-  
-  for(i in 1:1000) {
+
     sims1[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=1, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,2] = sims1[[i]]$aic + ((2*(3^2) + 2*3) / (189 - 3 - 1))
   }
@@ -270,9 +262,7 @@ aic.sim.cob = function(x) {
     sim.male.body[i] = sort(rnorm(n = length(cob$Dorsal.scute),
                                   mean = mean(cob$Dorsal.scute),
                                   sd = sd(cob$Dorsal.scute)))
-  }
-  
-  for(i in 1:1000) {
+
     sim.male.weap[i] = predict(logis.cob, list(Dorsal.scute=sim.male.body[,i]))
   }
   
@@ -281,9 +271,7 @@ aic.sim.cob = function(x) {
   for(i in 1:1000) {
     sims2[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=2, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,1] = sims2[[i]]$aic + ((2*(7^2) + 2*7) / (60 - 7 - 1))
-  }
-  
-  for(i in 1:1000) {
+ 
     sims1[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=1, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,2] = sims1[[i]]$aic + ((2*(3^2) + 2*3) / (60 - 3 - 1))
   }
@@ -365,9 +353,7 @@ aic.sim.neo = function(x) {
     sim.male.body[i] = sort(rnorm(n = length(neo$Dorsal.scute),
                                   mean = mean(neo$Dorsal.scute),
                                   sd = sd(neo$Dorsal.scute)))
-  }
-  
-  for(i in 1:1000) {
+
     sim.male.weap[i] = predict(logis.mod.neo, list(Dorsal.scute=sim.male.body[,i]))
   }
   
@@ -375,9 +361,7 @@ aic.sim.neo = function(x) {
   for(i in 1:1000) {
     sims2[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=2, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,1] = sims2[[i]]$aic + ((2*(7^2) + 2*7) / (189 - 7 - 1))
-  }
-  
-  for(i in 1:1000) {
+
     sims1[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=1, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,2] = sims1[[i]]$aic + ((2*(3^2) + 2*3) / (189 - 3 - 1))
   }
@@ -459,9 +443,7 @@ aic.sim.pro = function(x) {
     sim.male.body[i] = sort(rnorm(n = length(promit$Dorsal.scute),
                                   mean = mean(promit$Dorsal.scute),
                                   sd = sd(promit$Dorsal.scute)))
-  }
-  
-  for(i in 1:1000) {
+
     sim.male.weap[i] = predict(ric.mod.promit, list(Dorsal.scute=sim.male.body[,i]))
   }
   
@@ -470,9 +452,7 @@ aic.sim.pro = function(x) {
   for(i in 1:1000) {
     sims2[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=2, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,1] = sims2[[i]]$aic + ((2*(7^2) + 2*7) / (189 - 7 - 1))
-  }
-  
-  for(i in 1:1000) {
+
     sims1[[i]] = smsn.mix(y = na.omit(sim.male.weap[,i]), g=1, nu=6, obs.prob=T, family="Skew.normal")
     sim.aicc[i,2] = sims1[[i]]$aic + ((2*(3^2) + 2*3) / (189 - 3 - 1))
   }
