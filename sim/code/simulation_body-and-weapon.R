@@ -8,7 +8,7 @@
 
 # This next line will run a previous code entirely, so it might take a few 
 # minutes depending on your computer.
-source("./sim/code/Simulating sigmoid allometries and detecting dimorphism.R")
+source("Simulating sigmoid allometries and detecting dimorphism.R")
 
 #### PHAREICRANAUS MANAUARA ####
 
@@ -39,11 +39,11 @@ weap.body.sim.manau = function(x) {
 manaura = weap.body.sim.manau()
 
 
-#tiff(filename = "D:/Dropbox/Phareicranaus manauara/Supporting-Weapon/sim/figures/manaura-sim.tiff", res = 600, compression = 'lzw',
+#tiff(filename = "./figures/manaura-sim.tiff", res = 600, compression = 'lzw',
 #     units = 'mm', width = 160, height = 120)
 
 plot(density(manaura[,1]), las = 1, bty = 'l', 
-     xlab = "Simulated data",
+     xlab = "Simulated data (mm)",
      xlim = c(-0.2, 1.3),
      ylim = c(0, 8),
      main = "",
@@ -54,8 +54,17 @@ plot(density(manaura[,1]), las = 1, bty = 'l',
 ### The for() is simply to plot all columns automatically without 
 ### the need for a thousand lines. Takes a while to plot though.
 
-# Plotting body size simulated data
-for(i in 2:1000) {
+## We felt that plotting all 1,000 simulations was making the graph too busy.
+## Thus, we changed the code to plot only 100 random samples. 
+
+# This samples 100 random simulations from the entire simulation pool.
+sim.to.plot.Body <- sample(c(1:1000), size = 100, replace = F)
+sim.to.plot.Weapon <- sample(c(1001:2001), size = 100, replace = F)
+
+
+# Plotting 100 body size simulated data
+
+for(i in sim.to.plot.Body) {
 lines(density(manaura[,i]),
       col = 'grey')
 }
@@ -63,11 +72,12 @@ lines(density(manaura[,i]),
 lines(density(males2$body), col = 'black', lwd = 2)
 
 # Plotting weapon size simulated data
-for(i in 1001:2000) {
-  lines(density(manaura[,i]))
+for(i in sim.to.plot.Weapon) {
+  lines(density(manaura[,i]),
+        col = 'grey')
 }
 
-lines(density(males2$trait), col = 'grey', lwd = 2)
+lines(density(males2$trait), col = 'black', lwd = 2)
 
 #dev.off()
 
@@ -107,16 +117,20 @@ weap.body.sim.pur = function(x) {
 pureora = weap.body.sim.pur()
 
 
-#tiff(filename = "./sim/figures/pureora-sim.tiff", res = 600, compression = 'lzw',
+#tiff(filename = "./figures/pureora-sim.tiff", res = 600, compression = 'lzw',
 #     units = 'mm', width = 160, height = 120)
+
+sim.to.plot.Body <- sample(c(1:1000), size = 100, replace = F)
+sim.to.plot.Weapon <- sample(c(1001:2001), size = 100, replace = F)
+
 plot(density(pureora[,1]), las = 1, bty = 'l', 
-     xlab = "Simulated data",
+     xlab = "Simulated data (mm)",
      main = "",
      xlim = c(0,16),
      ylim = c(0,1.2),
      col = 'grey')
 
-for(i in 2:1000) {
+for(i in sim.to.plot.Body) {
   lines(density(pureora[,i]),
         col = 'grey')
 }
@@ -124,12 +138,12 @@ for(i in 2:1000) {
 lines(density(pur$pro.width),
       col = 'black', lwd = 2)
 
-for(i in 1001:2000) {
-  lines(density(pureora[,i]))
+for(i in sim.to.plot.Weapon) {
+  lines(density(pureora[,i]), col = "gray")
 }
 
 lines(density(pur$cheli.length),
-      col = 'grey', lwd = 2)
+      lwd = 2)
 
 #dev.off()
 
@@ -164,27 +178,30 @@ weap.body.sim.cob = function(x) {
 
 cobania = weap.body.sim.cob()
 
-#tiff(filename = "./sim/figures/cobania-sim.tiff", res = 600, compression = 'lzw',
+#tiff(filename = "./figures/cobania-sim.tiff", res = 600, compression = 'lzw',
 #     units = 'mm', width = 160, height = 120)
 plot(density(cobania[,1]), las = 1, bty = 'l', 
-     xlab = "Simulated data",
+     xlab = "simulated data (mm)",
      main = "",
      xlim = c(-1,14),
      ylim = c(0, 1),
      col = 'grey')
 
-for(i in 2:1000) {
+sim.to.plot.Body <- sample(c(1:1000), size = 100, replace = F)
+sim.to.plot.Weapon <- sample(c(1001:2001), size = 100, replace = F)
+
+for(i in sim.to.plot.Body) {
   lines(density(cobania[,i]),
         col = 'grey')
 }
 
 lines(density(cob$Dorsal.scute), col = 'black', lwd = 2)
 
-for(i in 1001:2000) {
-  lines(density(cobania[,i]))
+for(i in sim.to.plot.Weapon) {
+  lines(density(cobania[,i]), col = "gray")
 }
 
-lines(density(cob$C4A), col = 'grey', lwd = 2)
+lines(density(cob$C4A), lwd = 2)
 
 #dev.off()
 
@@ -219,27 +236,31 @@ weap.body.sim.neo = function(x) {
 
 neo.sim = weap.body.sim.neo()
 
-#tiff(filename = "./sim/figures/neo-sim.tiff", res = 600, compression = 'lzw',
+#tiff(filename = "./figures/neo-sim.tiff", res = 600, compression = 'lzw',
 #     units = 'mm', width = 160, height = 120)
 plot(density(neo.sim[,1]), las = 1, bty = 'l', 
-     xlab = "Simulated data",
+     xlab = "simulated data (mm)",
      main = "",
      xlim = c(0, 5),
      ylim = c(0, 3),
      col = 'grey')
 
-for(i in 2:1000) {
+sim.to.plot.Body <- sample(c(1:1000), size = 100, replace = F)
+sim.to.plot.Weapon <- sample(c(1001:2001), size = 100, replace = F)
+
+for(i in sim.to.plot.Body) {
   lines(density(neo.sim[,i]),
         col = 'grey')
 }
 
 lines(density(neo$Dorsal.scute), col = 'black', lwd = 2)
 
-for(i in 1001:2000) {
-  lines(density(neo.sim[,i]))
+for(i in sim.to.plot.Weapon) {
+  lines(density(neo.sim[,i]),
+        col = 'grey',)
 }
 
-lines(density(neo$C4A), col = 'grey', lwd = 2)
+lines(density(neo$C4A), lwd = 2)
 
 #dev.off()
 
@@ -274,28 +295,31 @@ weap.body.sim.promit = function(x) {
 
 promit.sim = weap.body.sim.promit()
 
-#tiff(filename = "./sim/figures/promit-sim.tiff", res = 600, compression = 'lzw',
+#tiff(filename = "./figures/promit-sim.tiff", res = 600, compression = 'lzw',
 #     units = 'mm', width = 160, height = 120)
 
 plot(density(promit.sim[,1]), las = 1, bty = 'l', 
-     xlab = "Simulated data",
+     xlab = "simulated data (mm)",
      main = "",
      xlim = c(0, 6),
      ylim = c(0,3.2),
      col = 'grey')
 
-for(i in 2:1000) {
+sim.to.plot.Body <- sample(c(1:1000), size = 100, replace = F)
+sim.to.plot.Weapon <- sample(c(1001:2001), size = 100, replace = F)
+
+for(i in sim.to.plot.Body) {
   lines(density(promit.sim[,i]),
         col = 'grey')
 }
 
 lines(density(promit$Dorsal.scute), lwd = 2, col = 'black')
 
-for(i in 1001:2000) {
-  lines(density(promit.sim[,i]))
+for(i in sim.to.plot.Weapon) {
+  lines(density(promit.sim[,i]), col = 'grey')
 }
 
-lines(density(promit$C4A), lwd = 2, col = 'grey')
+lines(density(promit$C4A), lwd = 2)
 
 #dev.off()
 
