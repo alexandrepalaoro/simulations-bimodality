@@ -1,6 +1,7 @@
 # Sigmoid allometries generate male dimorphism in secondary sexual traits: a comment on Packard (2023).
 
 Authors: Bruno Buzatto, Glauco Machado, Alexandre V. Palaoro <br>
+Journal: Evolutionary Ecology, DOI: 10.1007/s10682-024-10303-6 
 Contact about code, and analyses: alexandre.palaoro@gmail.com
 
 ---
