@@ -30,9 +30,7 @@ keywords:
   - "mixture models"
   - "static allometry"
   - "male dimorphism"
-# Uncomment and fill in once this repository has been archived on Zenodo.
-# Use the CONCEPT DOI (the one that always resolves to the newest version).
-# doi: "10.5281/zenodo.XXXXXXX"
+doi: "10.5281/zenodo.22286614"
 preferred-citation:
   type: article
   authors:
